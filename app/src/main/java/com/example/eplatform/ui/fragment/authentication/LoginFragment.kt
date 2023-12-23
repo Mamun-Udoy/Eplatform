@@ -1,5 +1,6 @@
 package com.example.eplatform.ui.fragment.authentication
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -14,6 +15,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.eplatform.R
 import com.example.eplatform.databinding.FragmentLoginBinding
+import com.example.eplatform.ui.activity.ApplicationActivity
 import com.example.eplatform.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.Bidi
@@ -91,8 +93,11 @@ class LoginFragment : Fragment() {
             if (!it.isNullOrEmpty()) {
 
                 if(it!="Unauthorized"){
-                    Log.d("successful", "user is not registered  ${loginViewModel.loginResult} ")
+                    Log.d("successful", "so network call is valid  ${loginViewModel.loginResult} ")
                     //findNavController().navigateTo(R.id.homeFragment)
+                    val intent = Intent(requireContext(), ApplicationActivity::class.java)
+                    startActivity(intent)
+
 
                 }
                 else{

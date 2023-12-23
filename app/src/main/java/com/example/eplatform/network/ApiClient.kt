@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiClient {
 
     companion object{
-        const val BASE_URL = "https://fakeapi.platzi.com/"
+        const val BASE_URL = "https://api.escuelajs.co/api/v1/"
 
         val retrofit by lazy {
             val interceptor = HttpLoggingInterceptor()
