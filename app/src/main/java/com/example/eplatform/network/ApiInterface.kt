@@ -9,6 +9,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.Url
 
@@ -32,5 +33,10 @@ interface ApiInterface {
     suspend fun getProducts(
         @Query("offset") offset: Int = 0,
         @Query("limit") limit: Int = 10
+    ):Response<ProductResponse>
+
+    @GET("/categories/{categoryID}/products")
+    suspend fun getCategoryWiseProduct(
+        @Path("categoryID") categoryId: Int
     ):Response<ProductResponse>
 }

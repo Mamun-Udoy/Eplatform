@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.eplatform.error_model.LoginExceptionResponse
 import com.example.eplatform.network.model.UserLoginRequest
-import com.example.repository.AppRepo
+import com.example.eplatform.repository.AppRepo
 import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

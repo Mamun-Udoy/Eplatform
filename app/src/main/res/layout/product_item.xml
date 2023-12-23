@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.example.eplatform.network.model.ProductResponse" />
+            type="com.example.eplatform.network.model.ProductResponse.ProductResItem" />
 
     </data>
 

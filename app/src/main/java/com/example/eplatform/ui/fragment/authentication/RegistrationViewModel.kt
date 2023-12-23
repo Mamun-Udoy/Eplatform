@@ -7,13 +7,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.eplatform.error_model.SignupExceptionResponse
 import com.example.eplatform.network.model.UserRegistrationRequest
-import com.example.repository.AppRepo
+import com.example.eplatform.repository.AppRepo
 import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.ResponseBody
 import javax.inject.Inject
 
 
@@ -29,8 +26,6 @@ class RegistrationViewModel @Inject constructor(private var appRepo: AppRepo) : 
         Log.d("username", "print username ${userRegistrationRequest.name}")
 
 //        val url = "https://fakestoreapi.com/users"
-
-        val userRegistrationRequest = userRegistrationRequest
 
         try {
             val response = appRepo.userSignUp(
