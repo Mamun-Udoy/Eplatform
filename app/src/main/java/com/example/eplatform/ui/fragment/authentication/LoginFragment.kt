@@ -16,7 +16,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.eplatform.R
 import com.example.eplatform.databinding.FragmentLoginBinding
 import com.example.eplatform.ui.activity.ApplicationActivity
+import com.example.eplatform.ui.fragment.HomeFragment
 import com.example.eplatform.utils.navigateTo
+import com.example.eplatform.utils.session.SharedPreferencesManager
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.Bidi
 
@@ -27,11 +29,17 @@ class LoginFragment : Fragment() {
 
     private val loginViewModel by viewModels<LoginViewModel>()
 
+    private val pref by lazy { SharedPreferencesManager(requireContext()) }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (pref.isLoggedIn()) {
+            val intent = Intent(requireContext(), ApplicationActivity::class.java)
+            startActivity(intent)
+        }
 
         binding = FragmentLoginBinding.inflate(inflater)
         return binding.root
@@ -39,6 +47,9 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
 
         //jumping to registration page by signup button
         binding.signUp.setOnClickListener {
@@ -48,6 +59,8 @@ class LoginFragment : Fragment() {
         //user trying to login
         binding.login.setOnClickListener {
             //userLoggedIn()
+
+            pref.setLoggedIn()
             val intent = Intent(requireContext(), ApplicationActivity::class.java)
             startActivity(intent)
         }
