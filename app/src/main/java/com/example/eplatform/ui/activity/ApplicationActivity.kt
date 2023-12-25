@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.eplatform.R
 import com.example.eplatform.databinding.ActivityApplicationBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class ApplicationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityApplicationBinding

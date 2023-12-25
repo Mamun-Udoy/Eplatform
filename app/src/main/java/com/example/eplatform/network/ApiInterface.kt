@@ -1,6 +1,7 @@
 package com.example.eplatform.network
 
 import com.example.eplatform.network.model.ProductResponse
+import com.example.eplatform.network.model.SingleProductResponse
 import com.example.eplatform.network.model.UserLoginRequest
 import com.example.eplatform.network.model.UserLoginResponse
 import com.example.eplatform.network.model.UserRegistrationRequest
@@ -15,9 +16,9 @@ import retrofit2.http.Url
 
 interface ApiInterface {
 
-    @POST
+    @POST("auth/login")
     suspend fun login(
-        @Url url: String?,
+        //@Url url: String?,
         @Body userLoginRequest: UserLoginRequest?
     ): Response<UserLoginResponse>
 
@@ -35,8 +36,16 @@ interface ApiInterface {
         @Query("limit") limit: Int = 10
     ):Response<ProductResponse>
 
-    @GET("/categories/{categoryID}/products")
+    @GET
+    suspend fun getProductsNew(
+        @Url url: String = "https://api.escuelajs.co/api/v1/products",
+        @Query("offset") offset: Int = 0,
+        @Query("limit") limit: Int = 10
+    ): Response<ProductResponse>
+
+//    @GET("/categories/{categoryID}/products")
+    @GET
     suspend fun getCategoryWiseProduct(
-        @Path("categoryID") categoryId: Int
+        @Url url: String,
     ):Response<ProductResponse>
 }

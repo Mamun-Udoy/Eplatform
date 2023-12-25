@@ -116,4 +116,6 @@ dependencies {
     //hilt
     implementation ("com.google.dagger:hilt-android:$hilt_version")
     kapt ("com.google.dagger:hilt-android-compiler:$hilt_version")
+
+    debugImplementation ("com.github.chuckerteam.chucker:library:4.0.0")
 }

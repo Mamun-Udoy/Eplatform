@@ -1,5 +1,7 @@
 package com.example.eplatform.utils
 
+import android.content.Context
+import android.net.ConnectivityManager
 import androidx.navigation.NavController
 
 fun NavController.navigateTo(destinationResid: Int) {
@@ -14,4 +16,13 @@ fun NavController.navigateTo(destinationResid: Int) {
         }
     }
 
+}
+
+
+
+fun Context.isConnectedToInternet(): Boolean {
+    val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val activeNetwork = connectivityManager.activeNetworkInfo
+
+    return activeNetwork?.isConnected == true
 }

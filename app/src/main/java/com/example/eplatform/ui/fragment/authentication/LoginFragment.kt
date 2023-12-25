@@ -47,7 +47,9 @@ class LoginFragment : Fragment() {
 
         //user trying to login
         binding.login.setOnClickListener {
-            userLoggedIn()
+            //userLoggedIn()
+            val intent = Intent(requireContext(), ApplicationActivity::class.java)
+            startActivity(intent)
         }
 
 
