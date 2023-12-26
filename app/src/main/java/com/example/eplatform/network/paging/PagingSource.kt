@@ -9,7 +9,7 @@ import com.example.eplatform.repository.AppRepo
 import retrofit2.Response
 
 
-const val NETWORK_PAGE_SIZE = 10
+const val NETWORK_PAGE_SIZE = 1
 
 class PagingSource(private val appRepo: AppRepo, private var category: Int) :
     PagingSource<Int, ProductResponse.ProductResItem>() {

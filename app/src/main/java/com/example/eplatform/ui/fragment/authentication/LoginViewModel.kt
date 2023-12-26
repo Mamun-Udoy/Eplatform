@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.eplatform.error_model.LoginExceptionResponse
 import com.example.eplatform.network.model.UserLoginRequest
 import com.example.eplatform.repository.AppRepo
+import com.example.eplatform.repository.DatabaseRepo
 import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +19,10 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val appRepo: AppRepo) : ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val appRepo: AppRepo,
+    private val dbRepo: DatabaseRepo
+) : ViewModel() {
 
 
     private val _loginResult = MutableLiveData<String>()
@@ -57,6 +61,15 @@ class LoginViewModel @Inject constructor(private val appRepo: AppRepo) : ViewMod
         }
 
 
+    }
+
+
+
+
+
+    // just using as trial
+    fun getProductItem() = viewModelScope.launch {
+        val data = dbRepo.getProductItem()
     }
 
 

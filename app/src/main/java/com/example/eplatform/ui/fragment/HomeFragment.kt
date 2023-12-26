@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun fetchData(category: Int = 3) {
+    private fun fetchData(category: Int = -1) {
         val pagingData = productPagingViewModel.getData(category).distinctUntilChanged()
         lifecycleScope.launch {
             pagingData.collect() {

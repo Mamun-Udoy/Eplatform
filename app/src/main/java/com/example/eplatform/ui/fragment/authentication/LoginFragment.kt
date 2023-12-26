@@ -39,6 +39,7 @@ class LoginFragment : Fragment() {
         if (pref.isLoggedIn()) {
             val intent = Intent(requireContext(), ApplicationActivity::class.java)
             startActivity(intent)
+            requireActivity().finish()
         }
 
         binding = FragmentLoginBinding.inflate(inflater)
@@ -63,6 +64,7 @@ class LoginFragment : Fragment() {
             pref.setLoggedIn()
             val intent = Intent(requireContext(), ApplicationActivity::class.java)
             startActivity(intent)
+            requireActivity().finish()
         }
 
 
