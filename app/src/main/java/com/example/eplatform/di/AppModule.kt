@@ -2,7 +2,7 @@ package com.example.eplatform.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.db.entities.ProductDatabase
+import com.example.eplatform.db.ProductDatabase
 import com.example.eplatform.network.ApiClient
 import com.example.eplatform.network.ApiInterface
 import dagger.Module
@@ -26,7 +26,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext context: Context): ProductDatabase  {
+    fun provideDatabase(@ApplicationContext context: Context): ProductDatabase {
         return Room.databaseBuilder(context.applicationContext, ProductDatabase::class.java, "Product_Database")
             .allowMainThreadQueries()
             .fallbackToDestructiveMigration()

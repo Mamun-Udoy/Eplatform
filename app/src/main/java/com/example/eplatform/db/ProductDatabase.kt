@@ -1,10 +1,9 @@
-package com.example.db.entities
+package com.example.eplatform.db
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.db.dao.ProductItemDao
+import com.example.eplatform.db.dao.ProductItemDao
+import com.example.eplatform.db.entities.ProductEntity
 
 
 @Database(entities = [ProductEntity::class], version=1)

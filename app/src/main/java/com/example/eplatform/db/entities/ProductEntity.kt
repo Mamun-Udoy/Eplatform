@@ -1,4 +1,4 @@
-package com.example.db.entities
+package com.example.eplatform.db.entities
 
 
 import androidx.room.Entity

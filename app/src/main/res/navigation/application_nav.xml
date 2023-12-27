@@ -9,4 +9,15 @@
         android:name="com.example.eplatform.ui.fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.example.eplatform.ui.fragment.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" />
+    <fragment
+        android:id="@+id/userAccountFragment"
+        android:name="com.example.eplatform.ui.fragment.UserAccountFragment"
+        android:label="fragment_user_account"
+        tools:layout="@layout/fragment_user_account" />
+
 </navigation>

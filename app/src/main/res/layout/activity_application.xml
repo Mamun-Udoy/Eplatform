@@ -37,7 +37,7 @@
             android:layout_marginBottom="?attr/actionBarSize">
 
 
-            <androidx.fragment.app.FragmentContainerView
+            <fragment
                 android:id="@+id/appfragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

@@ -1,4 +1,4 @@
-package com.example.eplatform.network.paging
+package com.example.eplatform.paging
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

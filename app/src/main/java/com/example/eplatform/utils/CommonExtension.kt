@@ -3,6 +3,8 @@ package com.example.eplatform.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import androidx.navigation.NavController
+import com.example.eplatform.db.entities.ProductEntity
+import com.example.eplatform.network.model.ProductResponse
 
 fun NavController.navigateTo(destinationResid: Int) {
 
@@ -19,10 +21,22 @@ fun NavController.navigateTo(destinationResid: Int) {
 }
 
 
-
 fun Context.isConnectedToInternet(): Boolean {
     val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val activeNetwork = connectivityManager.activeNetworkInfo
 
     return activeNetwork?.isConnected == true
 }
+
+fun ProductResponse.ProductResItem.toProductEntity(): ProductEntity {
+    return ProductEntity(
+        id = id,
+        description = description,
+        price = price,
+        title = title,
+        categoryId = category?.id,
+        image = images.toString(),
+        name = category?.name
+    )
+}
+

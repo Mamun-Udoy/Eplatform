@@ -1,4 +1,4 @@
-package com.example.eplatform.network.paging
+package com.example.eplatform.paging
 
 import android.util.Log
 import androidx.paging.PagingSource
@@ -6,13 +6,17 @@ import androidx.paging.PagingState
 import com.example.eplatform.network.model.ProductResponse
 import com.example.eplatform.network.model.SingleProductResponse
 import com.example.eplatform.repository.AppRepo
+import com.example.eplatform.repository.DatabaseRepo
+import com.example.eplatform.utils.toProductEntity
 import retrofit2.Response
 
 
 const val NETWORK_PAGE_SIZE = 1
 
-class PagingSource(private val appRepo: AppRepo, private var category: Int) :
+class PagingSource(private val appRepo: AppRepo,private  val dbRepo: DatabaseRepo, private var category: Int) :
     PagingSource<Int, ProductResponse.ProductResItem>() {
+
+
 
     override fun getRefreshKey(state: PagingState<Int, ProductResponse.ProductResItem>): Int? {
         return state.anchorPosition?.let {
@@ -45,6 +49,10 @@ class PagingSource(private val appRepo: AppRepo, private var category: Int) :
                 if (category == -1) {
                     response = appRepo.getProductsNew(offset, limit = 10)
                     Log.d("category_b", "load: if executed")
+                    addToDatabase(response.body())
+
+//                    dbRepo.insertProductItem(response.body()!!.toProductEntity())
+
                 } else {
                     response = appRepo.getCategoryWiseProduct(category)
                     Log.d("category_b", "load: else executed")
@@ -70,6 +78,13 @@ class PagingSource(private val appRepo: AppRepo, private var category: Int) :
 
         } catch (e: Exception) {
             return LoadResult.Error(e)
+        }
+    }
+
+    private fun addToDatabase(dataList: ProductResponse?) {
+        dataList?.forEach {
+            val dataEntity = it.toProductEntity()
+            dbRepo.insertProductItem(dataEntity)
         }
     }
 
