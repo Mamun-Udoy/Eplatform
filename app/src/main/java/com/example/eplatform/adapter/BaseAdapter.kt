@@ -1,25 +1,48 @@
 package com.example.eplatform.adapter
 
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<T: Any>(
-    @LayoutRes private val view:Int
-):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class BaseAdapter<T : Any>(
+    @LayoutRes private val view: Int
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val list:ArrayList<T> = arrayListOf()
-    private val parent:ViewGroup? = null
-    abstract override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
+    val list: ArrayList<T> = arrayListOf()
+    fun addItem(item: T) {
+        list.add(item)
+        notifyDataSetChanged()
+    }
 
+    fun addNewList(newList: List<T>?) {
+        if (newList == null) return
+        list.clear()
+        list.addAll(newList)
+        notifyDataSetChanged()
+    }
+
+    fun addNewArrayList(newList: ArrayList<T>) {
+        list.clear()
+        list.addAll(newList)
+        notifyDataSetChanged()
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder{
+        val view = LayoutInflater.from(parent.context).inflate(view,parent,false)
+        return ViewHolder(view)
+
+    }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
-    }
+    abstract override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int)
 
 
 }

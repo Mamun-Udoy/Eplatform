@@ -16,10 +16,12 @@ class HomeViewModel @Inject constructor(
     private val dbRepo: DatabaseRepo
 ) : ViewModel() {
 
-    fun insertProductItem(productEntity: ProductEntity) = viewModelScope.launch{
+    fun insertProductItem(productEntity: ProductEntity){
         Log.d("database_db", "insertProductItem: ${Gson().toJson(productEntity)}" )
         dbRepo.insertProductItem(productEntity)
+
     }
+
 
 
 }

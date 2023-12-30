@@ -94,4 +94,6 @@ interface ItemClickListener {
     fun wishListClicked(item: ProductResponse.ProductResItem?)
 
 
+
+
 }

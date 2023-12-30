@@ -20,8 +20,10 @@ import com.example.eplatform.paging.LoaderAdapter
 import com.example.eplatform.paging.PagingAdapter
 import com.example.eplatform.paging.ProductPagingViewModel
 import com.example.eplatform.ui.viewmodel.HomeViewModel
+import com.example.eplatform.ui.viewmodel.WishListViewModel
 import com.example.eplatform.utils.isConnectedToInternet
 import com.example.eplatform.utils.toProductEntity
+import com.example.eplatform.utils.toWishListEntity
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -38,6 +40,8 @@ class HomeFragment : Fragment(), ItemClickListener {
     private val pagingAdapter: PagingAdapter by lazy { PagingAdapter(this) }
 
     private val homeViewModel by viewModels<HomeViewModel>()
+
+    private val wishListViewModel by viewModels<WishListViewModel>()
 
 
     private fun init() {
@@ -104,7 +108,10 @@ class HomeFragment : Fragment(), ItemClickListener {
     }
 
     override fun wishListClicked(item: ProductResponse.ProductResItem?) {
-
+        val itemEntity = item?.toWishListEntity()
+        if (itemEntity != null) {
+            wishListViewModel.insertWishListItem(itemEntity)
+        }
     }
 
 
