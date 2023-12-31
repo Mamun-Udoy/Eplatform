@@ -17,7 +17,7 @@ interface ProductItemDao {
     @Query(value = "SELECT * FROM productitem ")
     suspend fun getProductItem(): List<ProductEntity>?
     @Query("SELECT COUNT(id) FROM productitem")
-    suspend fun getProductItemsSize(): Int
+    fun getProductItemsSize(): Int
     @Query("SELECT * FROM productitem ")
     suspend fun getPagingSource(): List<ProductEntity>
 

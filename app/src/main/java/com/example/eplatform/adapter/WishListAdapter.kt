@@ -34,7 +34,7 @@ class WishListAdapter(val view: Int, private val clickListener: itemClickListene
                 clickListener.onItemDeleted(item,position)
             }
             findViewById<ImageView>(R.id.addcart).setOnClickListener {
-                clickListener.onItemDeleted(item,position)
+                clickListener.onAddToCart(item,position)
             }
 
 

@@ -10,7 +10,7 @@
         app:showAsAction="always"
         app:icon="@drawable/ic_search" />
     <item
-        android:id="@+id/fav"
+        android:id="@+id/cart"
         android:icon="@drawable/ic_shoppingcart"
         android:title="Cart"
         app:showAsAction="always"/>

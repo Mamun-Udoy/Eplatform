@@ -25,13 +25,10 @@ class WishListViewModel @Inject constructor(
         val data = dbrepo.getWishListItem()
         emit(data)
     }
-
     fun insertWishListItem(wishListEntity: WishListEntity){
-
         dbrepo.insertWishListItem(wishListEntity)
 
     }
-
     fun deleteWishListItem(wishListEntity: WishListEntity){
         dbrepo.deleteWishListItem(wishListEntity)
     }

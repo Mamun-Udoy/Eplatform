@@ -1,6 +1,7 @@
 package com.example.eplatform.repository
 
 import com.example.eplatform.db.ProductDatabase
+import com.example.eplatform.db.entities.CartItemEntity
 import com.example.eplatform.db.entities.ProductEntity
 import com.example.eplatform.db.entities.WishListEntity
 import javax.inject.Inject
@@ -16,10 +17,10 @@ class DatabaseRepo @Inject constructor(
     suspend fun deleteProductitem(productEntity: ProductEntity) =
         db.productItemDao().deleteProductItem(productEntity)
 
-    suspend fun getTotalProductItemSize() = db.productItemDao().getProductItemsSize()
+    fun getTotalProductItemSize() = db.productItemDao().getProductItemsSize()
 
 
-    //wih
+    //wishList dao implementation
     suspend fun getWishListItem() = db.WishListItemDao().getProductItem()
 
     fun deleteWishListItem(wishListEntity: WishListEntity) =
@@ -27,6 +28,21 @@ class DatabaseRepo @Inject constructor(
 
     fun insertWishListItem(wishListEntity: WishListEntity) =
         db.WishListItemDao().insertWishListItem(wishListEntity)
+
+
+    //carItem dao implementation
+
+    fun insertCartItem(cartItemEntity: CartItemEntity) =
+        db.CartItemDao().insertCartItem(cartItemEntity)
+
+    fun deleteCartItem(cartItemEntity: CartItemEntity) =
+        db.CartItemDao().deleteCartItem(cartItemEntity)
+
+    fun getCartItemSize() = db.CartItemDao().getCartItemsSize()
+
+    fun getCartUpdatedItem(cartItemEntity: CartItemEntity) = db.CartItemDao().updateItem(cartItemEntity)
+
+    fun getCartProductItem()=db.CartItemDao().getCartProductItem()
 
 
 }

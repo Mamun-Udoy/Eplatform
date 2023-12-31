@@ -3,6 +3,7 @@ package com.example.eplatform.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import androidx.navigation.NavController
+import com.example.eplatform.db.entities.CartItemEntity
 import com.example.eplatform.db.entities.ProductEntity
 import com.example.eplatform.db.entities.WishListEntity
 import com.example.eplatform.network.model.ProductResponse
@@ -48,8 +49,22 @@ fun ProductResponse.ProductResItem.toWishListEntity(): WishListEntity {
         price = price,
         title = title,
         categoryId = category?.id,
-        image = images.toString(),
+        image = images?.get(0)?:"",
         name = category?.name
     )
+}
+
+
+fun WishListEntity.toCartItemEntity(): CartItemEntity {
+    return CartItemEntity(
+        id = id,
+        description = description,
+        price = price,
+        title = title,
+        categoryId = categoryId,
+        image = image,
+        name = name
+    )
+
 }
 
