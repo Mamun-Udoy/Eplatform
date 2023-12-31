@@ -22,7 +22,7 @@ class DatabaseRepo @Inject constructor(
     //wih
     suspend fun getWishListItem() = db.WishListItemDao().getProductItem()
 
-    suspend fun deleteWishListItem(wishListEntity: WishListEntity) =
+    fun deleteWishListItem(wishListEntity: WishListEntity) =
         db.WishListItemDao().deleteProductItem(wishListEntity)
 
     fun insertWishListItem(wishListEntity: WishListEntity) =

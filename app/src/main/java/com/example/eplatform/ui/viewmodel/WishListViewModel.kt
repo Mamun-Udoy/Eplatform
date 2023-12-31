@@ -31,4 +31,8 @@ class WishListViewModel @Inject constructor(
         dbrepo.insertWishListItem(wishListEntity)
 
     }
+
+    fun deleteWishListItem(wishListEntity: WishListEntity){
+        dbrepo.deleteWishListItem(wishListEntity)
+    }
 }

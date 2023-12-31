@@ -14,12 +14,13 @@ import com.example.eplatform.adapter.WishListAdapter
 import com.example.eplatform.databinding.FragmentWishListBinding
 import com.example.eplatform.db.entities.WishListEntity
 import com.example.eplatform.ui.viewmodel.WishListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class WishListFragment : Fragment() {
+@AndroidEntryPoint
+class WishListFragment : Fragment(),WishListAdapter.itemClickListener {
 
     private lateinit var binding: FragmentWishListBinding
-    private val wishListAdapter by lazy { WishListAdapter(R.layout.item_wish_list) }
+    private val wishListAdapter by lazy { WishListAdapter(R.layout.item_wish_list,this) }
 
     private val viewModel by viewModels<WishListViewModel>()
 
@@ -53,6 +54,20 @@ class WishListFragment : Fragment() {
         }
 
 
+
+    }
+
+    override fun onItemDeleted(item: WishListEntity, position: Int) {
+
+        viewModel.deleteWishListItem(item)
+        getData()
+    }
+
+   // this AddtoCart code will use cartFragment as a user add his wishList item it shoud add the item on the cart
+
+    override fun onAddToCart(item: WishListEntity, position: Int) {
+        //viewModel.insertWishListItem(item)
+       // getData()
 
     }
 }

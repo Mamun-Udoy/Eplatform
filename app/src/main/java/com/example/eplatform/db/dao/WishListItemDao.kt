@@ -15,8 +15,9 @@ interface WishListItemDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertWishListItem(wishListEntity: WishListEntity)
+
     @Delete
-    suspend fun deleteProductItem(wishListEntity: WishListEntity)
+    fun deleteProductItem(wishListEntity: WishListEntity)
 
     @Query(value = "SELECT * FROM wishlistitem ")
     suspend fun getProductItem(): List<WishListEntity>?
