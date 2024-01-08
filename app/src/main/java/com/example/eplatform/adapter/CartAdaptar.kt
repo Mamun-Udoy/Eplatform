@@ -4,14 +4,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eplatform.R
 import com.example.eplatform.databinding.ItemCartBinding
 import com.example.eplatform.db.entities.CartItemEntity
+import com.example.eplatform.ui.viewmodel.CartViewModel
 
 class CartAdaptar(private val clickListener: OnItemClickListener) :
     BaseAdapter<CartItemEntity>(R.layout.item_cart) {
+
+    var currentValue = MutableLiveData<Int>()
+
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val view = holder.itemView
         val item = list[position]

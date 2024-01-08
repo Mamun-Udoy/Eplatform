@@ -19,6 +19,7 @@ class CartViewModel @Inject constructor(
 
 
     val totalCostLiveData = MutableLiveData<Int>()
+    val count=MutableLiveData<Int>()
     val cartProductItemLiveData = MutableLiveData<List<CartItemEntity>>()
     fun getCartItemSize():Int {
         return dbRepo.getCartItemSize()

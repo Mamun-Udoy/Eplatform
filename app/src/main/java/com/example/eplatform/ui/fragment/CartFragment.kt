@@ -46,6 +46,7 @@ class CartFragment : Fragment(), CartAdaptar.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
         init()
         getData()
+        observeTotalCost()
     }
 
     private fun getData() {
@@ -56,6 +57,12 @@ class CartFragment : Fragment(), CartAdaptar.OnItemClickListener {
         cartViewModel.getCartProductItem()
 
 
+
+    }
+    private fun observeTotalCost() {
+        cartViewModel.totalCostLiveData.observe(viewLifecycleOwner) {
+            binding.totalCost.text = "Total = $it"
+        }
     }
 
 
@@ -66,6 +73,7 @@ class CartFragment : Fragment(), CartAdaptar.OnItemClickListener {
 
     override fun updateItem(item: CartItemEntity) {
         cartViewModel.updateCartItem(item)
+        getData()
     }
 
 
