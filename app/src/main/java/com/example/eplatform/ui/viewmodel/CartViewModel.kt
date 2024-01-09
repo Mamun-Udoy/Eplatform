@@ -16,9 +16,19 @@ import javax.inject.Inject
 class CartViewModel @Inject constructor(
     private val dbRepo: DatabaseRepo
 ) : ViewModel() {
+
+
     val totalCostLiveData = MutableLiveData<Int>()
-    val count = MutableLiveData<Int>()
     val cartProductItemLiveData = MutableLiveData<List<CartItemEntity>>()
+    // MutableLiveData to observe the database size
+    val dbSize = MutableLiveData<Int>()
+
+    // Function to update the database size
+    fun updateDatabaseSize(size: Int) {
+        dbSize.value = size
+        Log.d("db_size12", "print the db size ${dbSize.value}")
+    }
+
     fun getCartItemSize(): Int {
         return dbRepo.getCartItemSize()
     }

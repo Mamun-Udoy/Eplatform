@@ -45,6 +45,10 @@ class ApplicationActivity : AppCompatActivity() {
 
         topappbar()
 
+        cartViewModel.dbSize.observe(this){
+            updateBadge(it)
+        }
+
 
 
         /* note

@@ -6,8 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.eplatform.R
 import com.example.eplatform.adapter.CartAdaptar
 import com.example.eplatform.databinding.FragmentCartBinding
 import com.example.eplatform.db.entities.CartItemEntity
@@ -16,7 +21,7 @@ import com.example.eplatform.ui.viewmodel.WishListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CartFragment  : Fragment(), CartAdaptar.OnItemClickListener {
+class CartFragment : Fragment(), CartAdaptar.OnItemClickListener {
 
 
     private lateinit var binding: FragmentCartBinding
@@ -26,8 +31,7 @@ class CartFragment  : Fragment(), CartAdaptar.OnItemClickListener {
 
     private val viewModel by viewModels<WishListViewModel>()
 
-    private val cartViewModel by viewModels<CartViewModel>()
-
+    private val cartViewModel by activityViewModels<CartViewModel>()
 
 
     private fun init() {
@@ -48,6 +52,16 @@ class CartFragment  : Fragment(), CartAdaptar.OnItemClickListener {
         init()
         getData()
         observeTotalCost()
+
+
+        binding.checkoutbutton.setOnClickListener {
+            if(cartViewModel.getCartItemSize()>0)
+            requireView().findNavController().navigate(R.id.checkOutFragment)
+            else{
+                Toast.makeText(requireContext(),"No Item For Checkout",Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     private fun getData() {
@@ -55,11 +69,11 @@ class CartFragment  : Fragment(), CartAdaptar.OnItemClickListener {
             Log.d("adapterGetData", "get the data from retro $it")
             cartAdapter.addNewList(it)
         }
-       cartViewModel.getCartProductItem()
-
+        cartViewModel.getCartProductItem()
 
 
     }
+
     private fun observeTotalCost() {
         cartViewModel.totalCostLiveData.observe(viewLifecycleOwner) {
             binding.totalCost.text = "Total = $it"
@@ -69,6 +83,14 @@ class CartFragment  : Fragment(), CartAdaptar.OnItemClickListener {
     override fun onItemDeleted(item: CartItemEntity, position: Int) {
         cartViewModel.deleteCartItem(item)
         getData()
+
+        val updateSize = cartViewModel.getCartItemSize()
+        cartViewModel.updateDatabaseSize(updateSize)
+        if (cartAdapter.itemCount < 1) {
+            findNavController().navigate(R.id.homeFragment)
+        }
+
+
     }
 
     override fun updateItem(item: CartItemEntity) {

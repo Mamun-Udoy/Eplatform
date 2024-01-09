@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eplatform.R
@@ -27,7 +28,7 @@ class WishListFragment : Fragment(),WishListAdapter.itemClickListener {
 
     private val viewModel by viewModels<WishListViewModel>()
 
-    private val cartViewModel by viewModels<CartViewModel>()
+    private val cartViewModel by activityViewModels<CartViewModel>()
 
     private fun init() {
         binding.wishListRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -74,5 +75,8 @@ class WishListFragment : Fragment(),WishListAdapter.itemClickListener {
         Log.d("add_to_cart", "onAddToCart: $position")
         val itemValue = item.toCartItemEntity()
         cartViewModel.insertCartItem(itemValue)
+        val updateSize = cartViewModel.getCartItemSize()
+        cartViewModel.updateDatabaseSize(updateSize)
+        onItemDeleted(item,position)
     }
 }
