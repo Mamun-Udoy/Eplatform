@@ -12,5 +12,5 @@ data class CartItemEntity(
     val categoryId: Int?,
     val image: String?,
     val name: String?,
-    var qty: Int = 1
+    var qty: Int = 0
 )

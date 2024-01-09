@@ -11,6 +11,7 @@ abstract class BaseAdapter<T : Any>(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val list: ArrayList<T> = arrayListOf()
+    var counter: Int = 0
     fun addItem(item: T) {
         list.add(item)
         notifyDataSetChanged()
@@ -21,6 +22,11 @@ abstract class BaseAdapter<T : Any>(
         list.clear()
         list.addAll(newList)
         notifyDataSetChanged()
+    }
+
+    fun eachItemCount(count: Int): Int{
+        counter = count
+        return counter
     }
 
     fun addNewArrayList(newList: ArrayList<T>) {

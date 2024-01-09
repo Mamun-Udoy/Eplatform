@@ -27,4 +27,7 @@ interface CartItemDao {
     @Update
     fun updateItem(item: CartItemEntity)
 
+    @Query("SELECT qty FROM cartItem WHERE id = :eachItemCountId")
+    fun getEachItemCount(eachItemCountId: Int): Int
+
 }

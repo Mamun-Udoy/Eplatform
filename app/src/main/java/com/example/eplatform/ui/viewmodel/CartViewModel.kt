@@ -16,17 +16,15 @@ import javax.inject.Inject
 class CartViewModel @Inject constructor(
     private val dbRepo: DatabaseRepo
 ) : ViewModel() {
-
-
     val totalCostLiveData = MutableLiveData<Int>()
-    val count=MutableLiveData<Int>()
+    val count = MutableLiveData<Int>()
     val cartProductItemLiveData = MutableLiveData<List<CartItemEntity>>()
-    fun getCartItemSize():Int {
+    fun getCartItemSize(): Int {
         return dbRepo.getCartItemSize()
     }
 
     fun getCartProductItem() {
-        val data = dbRepo.getCartProductItem()?: emptyList()
+        val data = dbRepo.getCartProductItem() ?: emptyList()
         cartProductItemLiveData.value = data
         totalCostLiveData.value = totalCost(data)
     }
@@ -41,9 +39,9 @@ class CartViewModel @Inject constructor(
 
     }
 
-    fun updateCartItem(cartItemEntity: CartItemEntity){
-        dbRepo.getCartUpdatedItem(cartItemEntity)
 
+    fun updateCartItem(cartItemEntity: CartItemEntity) {
+        dbRepo.getCartUpdatedItem(cartItemEntity)
     }
 
     private fun totalCost(dataList: List<CartItemEntity>): Int {
@@ -53,6 +51,9 @@ class CartViewModel @Inject constructor(
             Log.d("checksum", "totalCost: $totalCost")
         }
         return totalCost
+    }
+    fun getEachItemCount(id: Int): Int {
+        return dbRepo.getEachCartItemCount(id)
     }
 
 

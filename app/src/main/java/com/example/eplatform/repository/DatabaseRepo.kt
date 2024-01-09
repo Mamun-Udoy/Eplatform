@@ -44,5 +44,7 @@ class DatabaseRepo @Inject constructor(
 
     fun getCartProductItem()=db.CartItemDao().getCartProductItem()
 
+    fun getEachCartItemCount(id:Int)=db.CartItemDao().getEachItemCount(id)
+
 
 }
