@@ -15,7 +15,6 @@ class ProductOfflineAdapter(product: ArrayList<ProductResponse.ProductResItem>) 
 
     var productOffline: MutableList<ProductResponse.ProductResItem> = mutableListOf()
 
-
     init {
         productOffline.addAll(product)
         notifyDataSetChanged()
