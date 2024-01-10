@@ -30,6 +30,20 @@ fun Context.isConnectedToInternet(): Boolean {
     return activeNetwork?.isConnected == true
 }
 
+fun ProductEntity.toProductResponse(): ProductResponse.ProductResItem {
+    return ProductResponse.ProductResItem(
+        id = id,
+        description = description,
+        price = price,
+        title = title,
+        images = listOf(image),
+        category = null,
+        creationAt = String(),
+        updatedAt = String()
+    )
+
+}
+
 fun ProductResponse.ProductResItem.toProductEntity(): ProductEntity {
     return ProductEntity(
         id = id,
@@ -37,7 +51,7 @@ fun ProductResponse.ProductResItem.toProductEntity(): ProductEntity {
         price = price,
         title = title,
         categoryId = category?.id,
-        image = images.toString(),
+        image = images[0],
         name = category?.name
     )
 }
@@ -49,7 +63,7 @@ fun ProductResponse.ProductResItem.toWishListEntity(): WishListEntity {
         price = price,
         title = title,
         categoryId = category?.id,
-        image = images?.get(0)?:"",
+        image = images?.get(0) ?: "",
         name = category?.name
     )
 }

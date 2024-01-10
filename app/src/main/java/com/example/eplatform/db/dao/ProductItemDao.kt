@@ -15,7 +15,7 @@ interface ProductItemDao {
     @Delete
     suspend fun deleteProductItem(productEntity: ProductEntity)
     @Query(value = "SELECT * FROM productitem ")
-    suspend fun getProductItem(): List<ProductEntity>?
+    fun getProductItem(): List<ProductEntity>?
     @Query("SELECT COUNT(id) FROM productitem")
     fun getProductItemsSize(): Int
     @Query("SELECT * FROM productitem ")

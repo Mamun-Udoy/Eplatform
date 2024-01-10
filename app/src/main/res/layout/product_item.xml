@@ -56,7 +56,8 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/saveamount"/>
 
             <TextView
                 android:id="@+id/saveamount"
@@ -68,7 +69,8 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productName" />
+                app:layout_constraintTop_toBottomOf="@+id/productName"
+                app:layout_constraintBottom_toTopOf="@id/priceText"/>
 
             <TextView
                 android:id="@+id/priceText"
@@ -79,7 +81,9 @@
                 app:layout_constraintEnd_toStartOf="@id/price"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="@id/saveamount"
-                app:layout_constraintTop_toBottomOf="@+id/saveamount" />
+                app:layout_constraintTop_toBottomOf="@+id/saveamount"
+                app:layout_constraintBottom_toTopOf="@id/discountedPrice"
+                />
 
 
             <TextView
@@ -103,7 +107,8 @@
                 android:maxLines="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/price" />
+                app:layout_constraintTop_toBottomOf="@+id/price"
+                app:layout_constraintBottom_toTopOf="@+id/BuyNowButton"/>
             <Button
                 android:id="@+id/BuyNowButton"
                 android:layout_width="match_parent"

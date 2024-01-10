@@ -14,7 +14,7 @@ class ProductResponse : ArrayList<ProductResponse.ProductResItem>() {
         @SerializedName("id")
         val id: Int?,
         @SerializedName("images")
-        val images: List<String>?,
+        val images: List<String?>,
         @SerializedName("price")
         val price: Int?,
         @SerializedName("title")

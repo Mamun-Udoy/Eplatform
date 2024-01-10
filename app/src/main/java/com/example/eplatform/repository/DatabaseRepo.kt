@@ -9,7 +9,7 @@ import javax.inject.Inject
 class DatabaseRepo @Inject constructor(
     private val db: ProductDatabase
 ) {
-    suspend fun getProductItem() = db.productItemDao().getProductItem()
+    fun getProductItem() = db.productItemDao().getProductItem()
 
     fun insertProductItem(productEntity: ProductEntity) =
         db.productItemDao().insertProductItem(productEntity)

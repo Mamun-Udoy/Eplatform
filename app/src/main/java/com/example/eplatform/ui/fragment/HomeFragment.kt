@@ -13,6 +13,7 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.eplatform.R
+import com.example.eplatform.adapter.ProductOfflineAdapter
 import com.example.eplatform.databinding.FragmentHomeBinding
 import com.example.eplatform.network.model.ProductResponse
 import com.example.eplatform.paging.ItemClickListener
@@ -23,6 +24,7 @@ import com.example.eplatform.ui.viewmodel.HomeViewModel
 import com.example.eplatform.ui.viewmodel.WishListViewModel
 import com.example.eplatform.utils.isConnectedToInternet
 import com.example.eplatform.utils.toProductEntity
+import com.example.eplatform.utils.toProductResponse
 import com.example.eplatform.utils.toWishListEntity
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,6 +40,8 @@ class HomeFragment : Fragment(), ItemClickListener {
     private val productPagingViewModel by viewModels<ProductPagingViewModel>()
 
     private val pagingAdapter: PagingAdapter by lazy { PagingAdapter(this) }
+
+    private lateinit var offlineAdapter: ProductOfflineAdapter
 
     private val homeViewModel by viewModels<HomeViewModel>()
 
@@ -71,6 +75,24 @@ class HomeFragment : Fragment(), ItemClickListener {
             fetchData()
             Log.d("database_db", "fetchData: paging data fetching...")
         }
+        else{
+            val data = homeViewModel.getProductItem()
+
+            val dataList = data?.map{
+                it.toProductResponse()
+
+            }
+
+            Log.d("offline_product_data", "offline cached data: $data")
+            Log.d("offline_product_data_size", "offline cached data: ${data?.size}")
+
+            offlineAdapter = ProductOfflineAdapter(ArrayList(dataList))
+            binding.productItemRecyclerview.layoutManager = GridLayoutManager(requireContext(), 2)
+            binding.productItemRecyclerview.adapter = offlineAdapter
+
+        }
+
+
 
     }
 
@@ -79,7 +101,7 @@ class HomeFragment : Fragment(), ItemClickListener {
         lifecycleScope.launch {
             pagingData.collect {
 
-//                cachedData(it)
+                cachedData(it)
                 Log.d("database_db", "fetchData: paging data found: $it")
                 pagingAdapter.submitData(it)
 

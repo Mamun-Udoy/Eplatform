@@ -72,8 +72,6 @@ class PagingAdapter(private val itemClickListener: ItemClickListener) :
     }
 
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding =
             ProductItemBinding.inflate(

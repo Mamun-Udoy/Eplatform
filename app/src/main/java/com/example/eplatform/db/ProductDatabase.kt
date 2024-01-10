@@ -12,7 +12,7 @@ import com.example.eplatform.db.entities.WishListEntity
 
 @Database(
     entities = [ProductEntity::class, WishListEntity::class, CartItemEntity::class],
-    version = 5
+    version = 6
 )
 abstract class ProductDatabase : RoomDatabase() {
     abstract fun productItemDao(): ProductItemDao

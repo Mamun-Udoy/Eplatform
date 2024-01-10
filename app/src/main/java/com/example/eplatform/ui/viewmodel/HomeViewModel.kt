@@ -24,4 +24,11 @@ class HomeViewModel @Inject constructor(
 
 
 
+    fun getProductItem(): List<ProductEntity>? {
+        return dbRepo.getProductItem()
+        Log.d("offline_product", "readProductItem: ${dbRepo.getProductItem()}" )
+    }
+
+
+
 }
