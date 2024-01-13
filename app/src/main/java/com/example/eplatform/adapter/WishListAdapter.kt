@@ -14,6 +14,7 @@ class WishListAdapter(val view: Int, private val clickListener: itemClickListene
         val view = holder.itemView
         val item = list[position]
         view.apply {
+            findViewById<TextView>(R.id.productName).text =item.title.toString()
             val priceTv = findViewById<TextView>(R.id.price)
             priceTv.text = "${item.price}"
             findViewById<TextView>(R.id.discountPrice).text = item.price.toString()
